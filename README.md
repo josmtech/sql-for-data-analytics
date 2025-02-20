@@ -16,3 +16,10 @@ them, based on a function specified in the statement
 The ORDER BY clause in SQL is used to sort the result set of a query in a specific order based on one 
 or more columns. This clause is commonly used to arrange data in ascending or descending order, 
 allowing you to control the presentation of data for better analysis and readability.
+
+
+limits are used to set the maximum number of lines to be displayed in the output. they can be 
+used together with others like order by to make the ouput more apppealing and give more clearer.
+
+Aliasing is used to give alternative names for columns in the output or for giving names for 
+aggregate columns instead of having the functions as column names.
