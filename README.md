@@ -29,3 +29,109 @@ aggregate columns instead of having the functions as column names.
 
 INTERMEDIATE SQL
 
+JOINS
+1. INNER JOIN
+This returns only the matching rows from both tables.
+
+Example:
+We have two tables:
+
+Customers
+
+customer_id	name	city
+1	John	Nairobi
+2	Jane	Mombasa
+3	Ali	Kisumu
+Orders
+
+order_id	customer_id	amount
+101	1	500
+102	2	700
+103	4	300
+Now, let's join these tables to get customers who have placed orders:
+
+sql
+Copy
+Edit
+SELECT Customers.name, Orders.order_id, Orders.amount  
+FROM Customers  
+INNER JOIN Orders ON Customers.customer_id = Orders.customer_id;
+Result:
+
+name	order_id	amount
+John	101	500
+Jane	102	700
+Ali is not included because he has no matching order, and order 103 is not included because its customer_id (4) is not in the Customers table.
+
+2. LEFT JOIN (or LEFT OUTER JOIN)
+Returns all records from the left table (Customers), plus matching records from the right table (Orders). If there's no match, NULL is returned.
+
+sql
+Copy
+Edit
+SELECT Customers.name, Orders.order_id, Orders.amount  
+FROM Customers  
+LEFT JOIN Orders ON Customers.customer_id = Orders.customer_id;
+Result:
+
+name	order_id	amount
+John	101	500
+Jane	102	700
+Ali	NULL	NULL
+Ali is included, but since he has no matching order, NULL appears.
+
+3. RIGHT JOIN (or RIGHT OUTER JOIN)
+Returns all records from the right table (Orders), plus matching records from the left table (Customers). If there’s no match, NULL appears on the left.
+
+sql
+Copy
+Edit
+SELECT Customers.name, Orders.order_id, Orders.amount  
+FROM Customers  
+RIGHT JOIN Orders ON Customers.customer_id = Orders.customer_id;
+Result:
+
+name	order_id	amount
+John	101	500
+Jane	102	700
+NULL	103	300
+Order 103 is included, but since there's no matching customer, the name is NULL.
+
+4. FULL JOIN (or FULL OUTER JOIN)
+Returns all records when there is a match in either table. If there’s no match, NULL appears.
+
+sql
+Copy
+Edit
+SELECT Customers.name, Orders.order_id, Orders.amount  
+FROM Customers  
+FULL JOIN Orders ON Customers.customer_id = Orders.customer_id;
+Result:
+
+name	order_id	amount
+John	101	500
+Jane	102	700
+Ali	NULL	NULL
+NULL	103	300
+Ali and Order 103 appear with NULL values where there is no match.
+
+5. CROSS JOIN
+Returns all possible combinations of rows from both tables (cartesian product).
+
+sql
+Copy
+Edit
+SELECT Customers.name, Orders.order_id, Orders.amount  
+FROM Customers  
+CROSS JOIN Orders;
+If Customers has 3 rows and Orders has 3 rows, the result will have 3 × 3 = 9 rows.
+
+6. SELF JOIN
+A table joins with itself. Useful for hierarchical data like employees and managers.
+
+sql
+Copy
+Edit
+SELECT A.name AS Employee, B.name AS Manager  
+FROM Employees A  
+JOIN Employees B ON A.manager_id = B.employee_id;
