@@ -1,6 +1,8 @@
 # sql-for-data-analytics
 I am using this repository to learn data analytics using sql and do practice projects
 
+BEGINNER SQL
+
 The select statement is used together with table columns to choose what to be included in the output. The asterik * is used to select and display all columns in the output. Select can be followed by specific column names like "first_name" "age" etc.
 
 The where clause is used to filter the rows of the column specified according to the condition give. 
@@ -23,3 +25,7 @@ used together with others like order by to make the ouput more apppealing and gi
 
 Aliasing is used to give alternative names for columns in the output or for giving names for 
 aggregate columns instead of having the functions as column names.
+
+
+INTERMEDIATE SQL
+
