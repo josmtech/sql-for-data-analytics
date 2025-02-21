@@ -135,3 +135,79 @@ Edit
 SELECT A.name AS Employee, B.name AS Manager  
 FROM Employees A  
 JOIN Employees B ON A.manager_id = B.employee_id;
+
+
+
+
+The UNION operator is used to combine the result sets of two or more SELECT queries into a single result set, removing duplicate rows.
+
+Syntax:
+
+sql
+Copy
+Edit
+SELECT column1, column2 FROM table1  
+UNION  
+SELECT column1, column2 FROM table2;
+Types of UNION in SQL
+1. UNION (Removes Duplicates)
+The UNION operator combines results and removes duplicate rows by default.
+
+Example:
+We have two tables:
+
+Customers_Kenya
+
+name	city
+John	Nairobi
+Jane	Mombasa
+Ali	Kisumu
+Customers_Uganda
+
+name	city
+Jane	Mombasa
+Brian	Kampala
+Amina	Entebbe
+Now, let's combine these tables:
+
+sql
+Copy
+Edit
+SELECT name, city FROM Customers_Kenya  
+UNION  
+SELECT name, city FROM Customers_Uganda;
+Result:
+
+name	city
+John	Nairobi
+Jane	Mombasa
+Ali	Kisumu
+Brian	Kampala
+Amina	Entebbe
+Jane appeared in both tables, but UNION removed the duplicate.
+
+2. UNION ALL (Keeps Duplicates)
+If you want to keep duplicate rows, use UNION ALL.
+
+sql
+Copy
+Edit
+SELECT name, city FROM Customers_Kenya  
+UNION ALL  
+SELECT name, city FROM Customers_Uganda;
+Result:
+
+name	city
+John	Nairobi
+Jane	Mombasa
+Ali	Kisumu
+Jane	Mombasa
+Brian	Kampala
+Amina	Entebbe
+Important Rules for UNION
+Same Number of Columns: The SELECT statements must have the same number of columns.
+Same Data Types: The columns must have compatible data types.
+Column Order Matters: The first SELECT column order determines the result.
+When to Use UNION vs. JOIN?
+Use JOIN when combining columns from multiple tables based on a relationship.
+Use UNION when combining rows from multiple tables with similar structures.
