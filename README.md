@@ -201,3 +201,214 @@ Column Order Matters: The first SELECT column order determines the result.
 When to Use UNION vs. JOIN?
 Use JOIN when combining columns from multiple tables based on a relationship.
 Use UNION when combining rows from multiple tables with similar structures.
+
+
+
+SQL String Functions
+
+String functions in SQL are used to manipulate and process string (text) data. They help with formatting, extracting, searching, and modifying text values in a database.
+
+1. Common SQL String Functions
+1.1. UPPER() & LOWER() – Convert Case
+UPPER() converts text to uppercase.
+LOWER() converts text to lowercase.
+Example:
+
+sql
+Copy
+Edit
+SELECT UPPER('hello world') AS upper_text, LOWER('HELLO WORLD') AS lower_text;
+Output:
+
+upper_text	lower_text
+HELLO WORLD	hello world
+1.2. LENGTH() or LEN() – Get String Length
+LENGTH() (MySQL, PostgreSQL)
+LEN() (SQL Server)
+Example:
+
+sql
+Copy
+Edit
+SELECT LENGTH('SQL Functions') AS text_length;
+Output:
+
+text_length
+13
+1.3. CONCAT() – Combine Strings
+Joins two or more strings together.
+
+Example:
+
+sql
+Copy
+Edit
+SELECT CONCAT('Hello', ' ', 'World!') AS full_text;
+Output:
+
+full_text
+Hello World!
+For SQL Server, use + instead of CONCAT():
+
+sql
+Copy
+Edit
+SELECT 'Hello' + ' ' + 'World!' AS full_text;
+1.4. SUBSTRING() – Extract Part of a String
+Extracts a portion of a string.
+
+Syntax:
+
+sql
+Copy
+Edit
+SUBSTRING(string, start_position, length)
+Example:
+
+sql
+Copy
+Edit
+SELECT SUBSTRING('Database Systems', 1, 8) AS extracted_text;
+Output:
+
+extracted_text
+Database
+For SQL Server, use SUBSTR() instead.
+
+1.5. LEFT() & RIGHT() – Extract from Left/Right
+LEFT(string, length): Extracts from the left.
+RIGHT(string, length): Extracts from the right.
+Example:
+
+sql
+Copy
+Edit
+SELECT LEFT('Analytics', 4) AS left_text, RIGHT('Analytics', 4) AS right_text;
+Output:
+
+left_text	right_text
+Anal	tics
+1.6. TRIM(), LTRIM(), RTRIM() – Remove Spaces
+TRIM() removes spaces from both sides.
+LTRIM() removes leading spaces (left).
+RTRIM() removes trailing spaces (right).
+Example:
+
+sql
+Copy
+Edit
+SELECT TRIM('   SQL Query   ') AS trimmed_text;
+Output:
+
+trimmed_text
+SQL Query
+1.7. REPLACE() – Replace Substring
+Replaces part of a string with another string.
+
+Syntax:
+
+sql
+Copy
+Edit
+REPLACE(original_string, search_string, replace_string)
+Example:
+
+sql
+Copy
+Edit
+SELECT REPLACE('I love SQL', 'SQL', 'Databases') AS replaced_text;
+Output:
+
+replaced_text
+I love Databases
+1.8. INSTR() – Find Position of Substring
+Finds the position of a substring inside a string.
+
+Syntax:
+
+sql
+Copy
+Edit
+INSTR(original_string, search_string)
+Example:
+
+sql
+Copy
+Edit
+SELECT INSTR('Data Science', 'Science') AS position;
+Output:
+
+position
+6
+For SQL Server, use CHARINDEX():
+
+sql
+Copy
+Edit
+SELECT CHARINDEX('Science', 'Data Science') AS position;
+1.9. REVERSE() – Reverse a String
+Reverses the order of characters in a string.
+
+Example:
+
+sql
+Copy
+Edit
+SELECT REVERSE('SQL') AS reversed_text;
+Output:
+
+reversed_text
+LQS
+1.10. FORMAT() – Format Numbers as Strings
+Useful for formatting numbers as currency, date-time, etc. (SQL Server & MySQL).
+
+Example:
+
+sql
+Copy
+Edit
+SELECT FORMAT(12345.6789, 'N2') AS formatted_number;
+Output:
+
+formatted_number
+12,345.68
+2. Practical Examples
+2.1. Extract First and Last Name from Full Name
+sql
+Copy
+Edit
+SELECT 
+    LEFT(full_name, INSTR(full_name, ' ') - 1) AS first_name, 
+    RIGHT(full_name, LENGTH(full_name) - INSTR(full_name, ' ')) AS last_name
+FROM users;
+2.2. Mask Email Addresses for Privacy
+sql
+Copy
+Edit
+SELECT 
+    CONCAT(LEFT(email, 3), '****@', SUBSTRING(email, INSTR(email, '@') + 1, LENGTH(email))) AS masked_email
+FROM users;
+2.3. Count Occurrences of a Character in a String
+sql
+Copy
+Edit
+SELECT LENGTH(original_text) - LENGTH(REPLACE(original_text, 'e', '')) AS count_e
+FROM documents;
+3. Summary of SQL String Functions
+Function	Description	Example	Output
+UPPER()	Converts to uppercase	UPPER('hello')	HELLO
+LOWER()	Converts to lowercase	LOWER('HELLO')	hello
+LENGTH()	Finds string length	LENGTH('SQL')	3
+CONCAT()	Joins strings	CONCAT('Hello', 'World')	HelloWorld
+SUBSTRING()	Extracts substring	SUBSTRING('Data',1,2)	Da
+LEFT()	Extracts from left	LEFT('Python', 3)	Pyt
+RIGHT()	Extracts from right	RIGHT('Python', 3)	hon
+TRIM()	Removes spaces	TRIM(' SQL ')	SQL
+REPLACE()	Replaces substring	REPLACE('SQL', 'S', 'T')	TQL
+INSTR()	Finds substring position	INSTR('Data', 'a')	2
+REVERSE()	Reverses string	REVERSE('abc')	cba
+FORMAT()	Formats numbers	FORMAT(1234, 'N2')	1,234.00
+4. Next Steps
+Practice with real-world datasets.
+Use string functions for data cleaning & text processing.
+Explore regular expressions (REGEXP_LIKE(), REGEXP_REPLACE()).
