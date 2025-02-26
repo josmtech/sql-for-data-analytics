@@ -119,8 +119,6 @@ Ali and Order 103 appear with NULL values where there is no match.
 Returns all possible combinations of rows from both tables (cartesian product).
 
 sql
-Copy
-Edit
 SELECT Customers.name, Orders.order_id, Orders.amount  
 FROM Customers  
 CROSS JOIN Orders;
@@ -130,8 +128,6 @@ If Customers has 3 rows and Orders has 3 rows, the result will have 3 × 3 = 9 r
 A table joins with itself. Useful for hierarchical data like employees and managers.
 
 sql
-Copy
-Edit
 SELECT A.name AS Employee, B.name AS Manager  
 FROM Employees A  
 JOIN Employees B ON A.manager_id = B.employee_id;
@@ -144,8 +140,6 @@ The UNION operator is used to combine the result sets of two or more SELECT quer
 Syntax:
 
 sql
-Copy
-Edit
 SELECT column1, column2 FROM table1  
 UNION  
 SELECT column1, column2 FROM table2;
@@ -171,8 +165,6 @@ Amina	Entebbe
 Now, let's combine these tables:
 
 sql
-Copy
-Edit
 SELECT name, city FROM Customers_Kenya  
 UNION  
 SELECT name, city FROM Customers_Uganda;
@@ -190,8 +182,6 @@ Jane appeared in both tables, but UNION removed the duplicate.
 If you want to keep duplicate rows, use UNION ALL.
 
 sql
-Copy
-Edit
 SELECT name, city FROM Customers_Kenya  
 UNION ALL  
 SELECT name, city FROM Customers_Uganda;
