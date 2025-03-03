@@ -408,6 +408,8 @@ REPLACE()	Replaces substring	REPLACE('SQL', 'S', 'T')	TQL
 INSTR()	Finds substring position	INSTR('Data', 'a')	2
 REVERSE()	Reverses string	REVERSE('abc')	cba
 FORMAT()	Formats numbers	FORMAT(1234, 'N2')	1,234.00
+
+
 4. Next Steps
 Practice with real-world datasets.
 Use string functions for data cleaning & text processing.
