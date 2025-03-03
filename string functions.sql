@@ -46,8 +46,22 @@ from employee_demographics
 -- TRIM()	Removes spaces all round a string both the left and right side.
 -- rtrim and ltrim also works.
 
-REPLACE()	Replaces substring	REPLACE('SQL', 'S', 'T')	TQL
+-- REPLACE()	Replaces substring
+select first_name, replace(first_name, 's', 'a') as a_for_s
+from employee_demographics
+where first_name like '%s%'
+;
 
-INSTR()	Finds substring position	INSTR('Data', 'a')	2
-REVERSE()	Reverses string	REVERSE('abc')	cba
-FORMAT()	Formats numbers	FORMAT(1234, 'N2')	1,234.00
+-- INSTR()	Finds substring position
+select first_name, instr(first_name, 'a')
+from employee_demographics
+where first_name like '____'
+;
+
+-- REVERSE()	Reverses string
+select first_name, reverse(first_name)
+from employee_demographics
+;
+
+
+-- FORMAT()	Formats numbers	FORMAT(1234, 'N2')	1,234.00
